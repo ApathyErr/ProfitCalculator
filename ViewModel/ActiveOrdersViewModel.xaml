@@ -48,7 +48,7 @@
                     <DataGridTextColumn Binding="{Binding oOrderStatus}" ClipboardContentBinding="{x:Null}" Header="Статус заказа"/>
                     <DataGridTextColumn Binding="{Binding oComment}" ClipboardContentBinding="{x:Null}" Header="Коментарий"/>
                     <DataGridTextColumn Binding="{Binding oMoneyPerOrder}" ClipboardContentBinding="{x:Null}" Header="Сумма"/>
-                    <DataGridTextColumn Binding="{Binding oCompleted}" ClipboardContentBinding="{x:Null}" Header="Готовность заказа"/>
+                    <DataGridCheckBoxColumn Binding="{Binding oCompleted}" ClipboardContentBinding="{x:Null}" Header="Готовность заказа"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Border>
