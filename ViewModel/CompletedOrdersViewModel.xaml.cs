@@ -83,8 +83,8 @@ namespace ProfitCalculator.ViewModel
                                 OrderStatus = ((OrdView)item).oOrderStatus,
                                 Comment = ((OrdView)item).oComment,
                                 MoneyPerOrder = ((OrdView)item).oMoneyPerOrder,
-                                Completed = ((OrdView)item).oCompleted
-                            };
+                                Completed = ((OrdView)item)?.oCompleted ?? 0
+                        };
 
                             db.Orders.Add(order); // Adding a new entry to the database
                         }
