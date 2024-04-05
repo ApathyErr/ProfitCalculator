@@ -15,13 +15,19 @@
         <Border Grid.Row="0"
                 Background="#800da9d9"
                 CornerRadius="10" 
-                Padding="10">
+                Padding="10">   
             <DataGrid Name="activeOrdersGrid"
+                      RowBackground="#332be0b7"
+                      AlternatingRowBackground="#330da9d9"
+                      Foreground="White"
                       ColumnWidth="*"
                       Background="Transparent"
                       BorderThickness="0"
                       AutoGenerateColumns="False"
-                      IsReadOnly="False" >
+                      IsReadOnly="False"
+                      SelectionMode="Extended"
+                      SelectionUnit="FullRow"
+                      CanUserDeleteRows="False">    
                 <!--SelectionChanged="customersGrid_SelectionChanged"-->
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
@@ -32,9 +38,8 @@
                         <Setter Property="FontSize" Value="15"/>
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
-                <!--8000c598-->
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding oNum}" ClipboardContentBinding="{x:Null}" Header="Номер" Width="40"/>
+                    <DataGridTextColumn Binding="{Binding oId}" ClipboardContentBinding="{x:Null}" Header="ID" IsReadOnly="True"/>
                     <DataGridTextColumn Binding="{Binding oData}" ClipboardContentBinding="{x:Null}" Header="Дата"/>
                     <DataGridTextColumn Binding="{Binding oCustomersMail}" ClipboardContentBinding="{x:Null}" Header="Почта"/>
                     <DataGridTextColumn Binding="{Binding oStartPoint}" ClipboardContentBinding="{x:Null}" Header="Откуда"/>
@@ -45,7 +50,6 @@
                     <DataGridTextColumn Binding="{Binding oMoneyPerOrder}" ClipboardContentBinding="{x:Null}" Header="Сумма"/>
                     <DataGridTextColumn Binding="{Binding oCompleted}" ClipboardContentBinding="{x:Null}" Header="Готовность заказа"/>
                 </DataGrid.Columns>
-
             </DataGrid>
         </Border>
         <StackPanel Grid.Row="1"

@@ -16,13 +16,18 @@
     Background="#800da9d9"
     CornerRadius="10" 
     Padding="10">
-            <DataGrid 
-    Name="financeGrid"
-    ColumnWidth="*"
-      Background="Transparent"
-      BorderThickness="0"
-    AutoGenerateColumns="False"
-    IsReadOnly="False" >
+            <DataGrid Name="financeGrid"
+                      ColumnWidth="*"
+                      Background="Transparent"
+                      BorderThickness="0"
+                      AutoGenerateColumns="False"
+                      RowBackground="#332be0b7"
+AlternatingRowBackground="#330da9d9"
+                      Foreground="White"
+                      SelectionMode="Extended"
+SelectionUnit="FullRow"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False">
                 <!--SelectionChanged="customersGrid_SelectionChanged"-->
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
@@ -35,13 +40,13 @@
                 </DataGrid.ColumnHeaderStyle>
                 <!--8000c598-->
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding oNum}" ClipboardContentBinding="{x:Null}" Header="Номер" Width="40"/>
+                    <DataGridTextColumn Binding="{Binding oId}" ClipboardContentBinding="{x:Null}" Header="ID" IsReadOnly="True"/>
                     <DataGridTextColumn Binding="{Binding oData}" ClipboardContentBinding="{x:Null}" Header="Дата"/>
                     <DataGridTextColumn Binding="{Binding oCustomersMail}" ClipboardContentBinding="{x:Null}" Header="Почта"/>
                     <DataGridTextColumn Binding="{Binding oOrderStatus}" ClipboardContentBinding="{x:Null}" Header="Статус заказа"/>
                     <DataGridTextColumn Binding="{Binding oMoneyPerOrder}" ClipboardContentBinding="{x:Null}" Header="Сумма"/>
                     <DataGridTextColumn Binding="{Binding oExpenses}" ClipboardContentBinding="{x:Null}" Header="Траты"/>
-                    <DataGridTextColumn Binding="{Binding oProfit}" ClipboardContentBinding="{x:Null}" Header="Прибыль"/>
+                    <DataGridTextColumn Binding="{Binding oProfit}" ClipboardContentBinding="{x:Null}" Header="Прибыль" IsReadOnly="True"/>
                 </DataGrid.Columns>
 
             </DataGrid>

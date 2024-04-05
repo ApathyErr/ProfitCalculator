@@ -25,9 +25,7 @@ public partial class ProfitCalculatorDataBaseContext : DbContext
     {
         modelBuilder.Entity<Order>(entity =>
         {
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Data).HasColumnName("data");
         });
 

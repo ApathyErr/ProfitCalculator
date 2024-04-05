@@ -7,8 +7,6 @@ public partial class Order
 {
     public int Id { get; set; }
 
-    public int? Num { get; set; }
-
     public string? Data { get; set; }
 
     public string? CustomersMail { get; set; }
@@ -32,7 +30,6 @@ public partial class Order
 internal class OrdView
 {
     public int? oId { get; set; }
-    public int? oNum { get; set; }
 
     public string? oData { get; set; }
 
@@ -54,4 +51,5 @@ internal class OrdView
 
     public double? oProfit { get; set; }
     public int? oCompleted { get; set; }
+
 }
