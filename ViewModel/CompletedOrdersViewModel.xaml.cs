@@ -93,6 +93,7 @@ namespace ProfitCalculator.ViewModel
                     }
                 }
             }
+            metodShow(sender, e);
         }
 
 
