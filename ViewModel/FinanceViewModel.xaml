@@ -40,8 +40,18 @@ SelectionUnit="FullRow"
                 </DataGrid.ColumnHeaderStyle>
                 <!--8000c598-->
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding oId}" ClipboardContentBinding="{x:Null}" Header="ID" IsReadOnly="True"/>
-                    <DataGridTextColumn Binding="{Binding oData}" ClipboardContentBinding="{x:Null}" Header="Дата"/>
+                    <DataGridTextColumn Binding="{Binding oId}" 
+                                        ClipboardContentBinding="{x:Null}" 
+                                        Header="ID" 
+                                        IsReadOnly="True"
+                                        Width="50"/>
+                    <DataGridTemplateColumn Header="Дата">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding oData, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTextColumn Binding="{Binding oCustomersMail}" ClipboardContentBinding="{x:Null}" Header="Почта"/>
                     <DataGridTextColumn Binding="{Binding oOrderStatus}" ClipboardContentBinding="{x:Null}" Header="Статус заказа"/>
                     <DataGridTextColumn Binding="{Binding oMoneyPerOrder}" ClipboardContentBinding="{x:Null}" Header="Сумма"/>

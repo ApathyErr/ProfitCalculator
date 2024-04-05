@@ -17,6 +17,9 @@
     <!--Красивая рамка-->
     <Border CornerRadius="10"
             BorderThickness="2">
+        <Border.Background>
+            <ImageBrush ImageSource="/Images/wallpaper.jpg" Stretch="UniformToFill"/>
+        </Border.Background>
         <Border.BorderBrush>
             <!--Заливка рамки градиентом-->
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -95,7 +98,7 @@
                             </StackPanel>
                         </RadioButton>
                         <!--4-->
-                        <RadioButton Style="{StaticResource menuButton}"
+                        <!--<RadioButton Style="{StaticResource menuButton}"
                                      Tag="{StaticResource color9}"
                                      Margin="0,10,0,10"
                                      Click="Button4_Click">
@@ -103,7 +106,7 @@
                                 <fa:IconImage Icon="User" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Отчеты" Style="{StaticResource menuButtonText}"/>
                             </StackPanel>
-                        </RadioButton>
+                        </RadioButton>-->
 
 
                         

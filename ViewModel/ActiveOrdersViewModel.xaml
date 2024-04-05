@@ -39,8 +39,18 @@
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding oId}" ClipboardContentBinding="{x:Null}" Header="ID" IsReadOnly="True"/>
-                    <DataGridTextColumn Binding="{Binding oData}" ClipboardContentBinding="{x:Null}" Header="Дата"/>
+                    <DataGridTextColumn Binding="{Binding oId}" 
+                                        ClipboardContentBinding="{x:Null}" 
+                                        Header="ID" 
+                                        IsReadOnly="True"
+                                        Width="50"/>
+                    <DataGridTemplateColumn Header="Дата">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding oData, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTextColumn Binding="{Binding oCustomersMail}" ClipboardContentBinding="{x:Null}" Header="Почта"/>
                     <DataGridTextColumn Binding="{Binding oStartPoint}" ClipboardContentBinding="{x:Null}" Header="Откуда"/>
                     <DataGridTextColumn Binding="{Binding oFinalPoint}" ClipboardContentBinding="{x:Null}" Header="Куда"/>
