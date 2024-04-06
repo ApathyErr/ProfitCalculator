@@ -30,6 +30,7 @@ public partial class Order
 internal class OrdView
 {
     public int? oId { get; set; }
+    public int? oNum { get; set; }
 
     public string? oData { get; set; }
 

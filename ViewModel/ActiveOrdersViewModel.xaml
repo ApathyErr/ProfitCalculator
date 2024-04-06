@@ -51,7 +51,18 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Binding="{Binding oCustomersMail}" ClipboardContentBinding="{x:Null}" Header="Почта"/>
+                    <DataGridComboBoxColumn Header="CustomersMail" SelectedValueBinding="{Binding oCustomersMail}" SelectedValuePath="Email" DisplayMemberPath="Email">
+                        <DataGridComboBoxColumn.ElementStyle>
+                            <Style TargetType="ComboBox">
+                                <Setter Property="ItemsSource" Value="{Binding EmployerMail}" />
+                            </Style>
+                        </DataGridComboBoxColumn.ElementStyle>
+                        <DataGridComboBoxColumn.EditingElementStyle>
+                            <Style TargetType="ComboBox">
+                                <Setter Property="ItemsSource" Value="{Binding EmployerMail}" />
+                            </Style>
+                        </DataGridComboBoxColumn.EditingElementStyle>
+                    </DataGridComboBoxColumn>
                     <DataGridTextColumn Binding="{Binding oStartPoint}" ClipboardContentBinding="{x:Null}" Header="Откуда"/>
                     <DataGridTextColumn Binding="{Binding oFinalPoint}" ClipboardContentBinding="{x:Null}" Header="Куда"/>
                     <DataGridTextColumn Binding="{Binding oTrackNumber}" ClipboardContentBinding="{x:Null}" Header="Трек номер"/>

@@ -6,11 +6,20 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>18_Ths_icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DataBase\ProfitCalculatorDataBase.db" />
     <None Remove="Images\back-image.jpg" />
     <None Remove="Images\wallpaper.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="18_Ths_icon.ico" />
+    <Content Include="DataBase\ProfitCalculatorDataBase.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -25,12 +34,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="DataBase\ProfitCalculatorDataBase.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
