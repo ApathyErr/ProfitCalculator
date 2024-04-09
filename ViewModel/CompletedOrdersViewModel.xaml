@@ -39,13 +39,13 @@ SelectionUnit="FullRow"
                         <Setter Property="FontSize" Value="15"/>
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
-                <!--8000c598-->
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding oId}" 
-                                        ClipboardContentBinding="{x:Null}" 
-                                        Header="ID" 
-                                        IsReadOnly="True"
-                                        Width="50"/>
+                        ClipboardContentBinding="{x:Null}" 
+                        Header="ID" 
+                        IsReadOnly="True"
+                        Width="50"/>
+
                     <DataGridTemplateColumn Header="Дата">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -53,14 +53,28 @@ SelectionUnit="FullRow"
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Binding="{Binding oCustomersMail}" ClipboardContentBinding="{x:Null}" Header="Почта"/>
+
+                    <!--<DataGridComboBoxColumn Header="CustomersMail" 
+        SelectedValueBinding="{Binding oCustomersMail}">
+        <DataGridComboBoxColumn.ElementStyle>
+            <Style TargetType="ComboBox">
+                <Setter Property="ItemsSource" Value="{Binding Path=ProfitCalculatorDataBaseContext.Customers, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"/>
+            </Style>
+        </DataGridComboBoxColumn.ElementStyle>
+        <DataGridComboBoxColumn.EditingElementStyle>
+            <Style TargetType="ComboBox">
+                <Setter Property="ItemsSource" Value="{Binding Path=ProfitCalculatorDataBaseContext.Customers, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"/>
+            </Style>
+        </DataGridComboBoxColumn.EditingElementStyle>
+    </DataGridComboBoxColumn>-->
+
+                    <DataGridTextColumn Binding="{Binding oCustomerId}" ClipboardContentBinding="{x:Null}" Header="Customer Id"/>
                     <DataGridTextColumn Binding="{Binding oStartPoint}" ClipboardContentBinding="{x:Null}" Header="Откуда"/>
                     <DataGridTextColumn Binding="{Binding oFinalPoint}" ClipboardContentBinding="{x:Null}" Header="Куда"/>
                     <DataGridTextColumn Binding="{Binding oTrackNumber}" ClipboardContentBinding="{x:Null}" Header="Трек номер"/>
                     <DataGridTextColumn Binding="{Binding oOrderStatus}" ClipboardContentBinding="{x:Null}" Header="Статус заказа"/>
                     <DataGridTextColumn Binding="{Binding oComment}" ClipboardContentBinding="{x:Null}" Header="Коментарий"/>
                     <DataGridTextColumn Binding="{Binding oMoneyPerOrder}" ClipboardContentBinding="{x:Null}" Header="Сумма"/>
-                    <DataGridCheckBoxColumn Binding="{Binding oCompleted}" ClipboardContentBinding="{x:Null}" Header="Готовность заказа"/>
                 </DataGrid.Columns>
 
             </DataGrid>

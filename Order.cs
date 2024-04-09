@@ -9,7 +9,9 @@ public partial class Order
 
     public string? Data { get; set; }
 
-    public string? CustomersMail { get; set; }
+    public int? CustomerId { get; set; }
+
+    public string? СontentsOfTransportation { get; set; }
 
     public string? StartPoint { get; set; }
 
@@ -24,15 +26,16 @@ public partial class Order
     public double? MoneyPerOrder { get; set; }
 
     public double? Expenses { get; set; }
-
-    public int? Completed { get; set; }
 }
 internal class OrdView
 {
     public int? oId { get; set; }
+
     public int? oNum { get; set; }
 
     public string? oData { get; set; }
+
+    public int? oCustomerId { get; set; }
 
     public string? oCustomersMail { get; set; }
 
@@ -51,6 +54,6 @@ internal class OrdView
     public double? oExpenses { get; set; }
 
     public double? oProfit { get; set; }
-    public int? oCompleted { get; set; }
 
+    public int? oCompleted { get; set; }
 }

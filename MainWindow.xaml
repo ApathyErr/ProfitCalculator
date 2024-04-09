@@ -91,17 +91,28 @@
                         <RadioButton Style="{StaticResource menuButton}"
                                      Tag="{StaticResource color9}"
                                      Margin="0,10,0,10"
-                                     Click="Button3_Click">      
+                                     Click="Button3_Click">  
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="User" Style="{StaticResource menuButtonIcon}"/>
+                                <TextBlock Text="Заказчики" Style="{StaticResource menuButtonText}"/>
+                            </StackPanel>
+                        </RadioButton>
+                        <!--4-->
+                        <RadioButton Style="{StaticResource menuButton}"
+                                     Tag="{StaticResource color9}"
+                                     Margin="0,10,0,10"
+                                     Click="Button4_Click">      
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="User" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Финансы" Style="{StaticResource menuButtonText}"/>
                             </StackPanel>
                         </RadioButton>
-                        <!--4-->
+                       
+                        <!--5-->
                         <!--<RadioButton Style="{StaticResource menuButton}"
                                      Tag="{StaticResource color9}"
                                      Margin="0,10,0,10"
-                                     Click="Button4_Click">
+                                     Click="Button5_Click">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="User" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Отчеты" Style="{StaticResource menuButtonText}"/>

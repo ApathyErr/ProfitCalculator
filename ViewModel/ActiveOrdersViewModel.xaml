@@ -44,6 +44,7 @@
                                         Header="ID" 
                                         IsReadOnly="True"
                                         Width="50"/>
+                    
                     <DataGridTemplateColumn Header="Дата">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -51,25 +52,28 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridComboBoxColumn Header="CustomersMail" SelectedValueBinding="{Binding oCustomersMail}" SelectedValuePath="Email" DisplayMemberPath="Email">
+
+                    <!--<DataGridComboBoxColumn Header="CustomersMail" 
+                        SelectedValueBinding="{Binding oCustomersMail}">
                         <DataGridComboBoxColumn.ElementStyle>
                             <Style TargetType="ComboBox">
-                                <Setter Property="ItemsSource" Value="{Binding EmployerMail}" />
+                                <Setter Property="ItemsSource" Value="{Binding Path=ProfitCalculatorDataBaseContext.Customers, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"/>
                             </Style>
                         </DataGridComboBoxColumn.ElementStyle>
                         <DataGridComboBoxColumn.EditingElementStyle>
                             <Style TargetType="ComboBox">
-                                <Setter Property="ItemsSource" Value="{Binding EmployerMail}" />
+                                <Setter Property="ItemsSource" Value="{Binding Path=ProfitCalculatorDataBaseContext.Customers, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"/>
                             </Style>
                         </DataGridComboBoxColumn.EditingElementStyle>
-                    </DataGridComboBoxColumn>
+                    </DataGridComboBoxColumn>-->
+
+                    <DataGridTextColumn Binding="{Binding oCustomerId}" ClipboardContentBinding="{x:Null}" Header="Id заказчика"/>
                     <DataGridTextColumn Binding="{Binding oStartPoint}" ClipboardContentBinding="{x:Null}" Header="Откуда"/>
                     <DataGridTextColumn Binding="{Binding oFinalPoint}" ClipboardContentBinding="{x:Null}" Header="Куда"/>
                     <DataGridTextColumn Binding="{Binding oTrackNumber}" ClipboardContentBinding="{x:Null}" Header="Трек номер"/>
                     <DataGridTextColumn Binding="{Binding oOrderStatus}" ClipboardContentBinding="{x:Null}" Header="Статус заказа"/>
                     <DataGridTextColumn Binding="{Binding oComment}" ClipboardContentBinding="{x:Null}" Header="Коментарий"/>
                     <DataGridTextColumn Binding="{Binding oMoneyPerOrder}" ClipboardContentBinding="{x:Null}" Header="Сумма"/>
-                    <DataGridCheckBoxColumn Binding="{Binding oCompleted}" ClipboardContentBinding="{x:Null}" Header="Готовность заказа"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Border>

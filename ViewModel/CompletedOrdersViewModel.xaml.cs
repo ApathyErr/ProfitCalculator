@@ -28,23 +28,25 @@ namespace ProfitCalculator.ViewModel
         {
             using (ProfitCalculatorDataBaseContext db = new ProfitCalculatorDataBaseContext())
             {
-                var ord = from order in db.Orders
-                          where order.Completed == 1
-                          select new OrdView
-                          {
-                              oId = order.Id,
-                              oData = order.Data,
-                              oCustomersMail = order.CustomersMail,
-                              oStartPoint = order.StartPoint,
-                              oFinalPoint = order.FinalPoint,
-                              oTrackNumber = order.TrackNumber,
-                              oOrderStatus = order.OrderStatus,
-                              oComment = order.Comment,
-                              oMoneyPerOrder = order.MoneyPerOrder,
-                              oCompleted = order.Completed
-                          };
-                completedOrdersGrid.ItemsSource = ord.ToList();
+                var customers = db.Customers.ToList(); // Загрузите всех клиентов заранее
+                var orders = db.Orders.Where(o => o.OrderStatus != "Готов")
+                                     .Select(o => new OrdView
+                                     {
+                                         oId = o.Id,
+                                         oData = o.Data,
+                                         oCustomerId = o.CustomerId,
+                                         //oCustomersMail = customers.FirstOrDefault(c => c.CustomerId == (int)o.CustomerId)?.Mail,
+                                         //oCustomersMail = customers.FirstOrDefault(c => c.CustomerId == null ? null: (int)o.CustomerId).Mail,
+                                         oStartPoint = o.StartPoint,
+                                         oFinalPoint = o.FinalPoint,
+                                         oTrackNumber = o.TrackNumber,
+                                         oOrderStatus = o.OrderStatus,
+                                         oComment = o.Comment,
+                                         oMoneyPerOrder = o.MoneyPerOrder
+                                     })
+                                     .ToList();
 
+                completedOrdersGrid.ItemsSource = orders;
             }
         }
 
@@ -62,28 +64,28 @@ namespace ProfitCalculator.ViewModel
                         if (entry != null)
                         {
                             entry.Data = ((OrdView)item).oData;
-                            entry.CustomersMail = ((OrdView)item).oCustomersMail;
+                            entry.CustomerId = ((OrdView)item).oCustomerId;
+                            //entry.oCustomersMail = ((OrdView)item).oCustomersMail;
                             entry.StartPoint = ((OrdView)item).oStartPoint;
                             entry.FinalPoint = ((OrdView)item).oFinalPoint;
                             entry.TrackNumber = ((OrdView)item).oFinalPoint;
                             entry.OrderStatus = ((OrdView)item).oOrderStatus;
                             entry.Comment = ((OrdView)item).oComment;
                             entry.MoneyPerOrder = ((OrdView)item).oMoneyPerOrder;
-                            entry.Completed = ((OrdView)item).oCompleted;
                         }
                         else
                         {
                             Order order = new Order
                             {
                                 Data = ((OrdView)item).oData,
-                                CustomersMail = ((OrdView)item).oCustomersMail,
+                                CustomerId = ((OrdView)item).oCustomerId,
+                                //oCustomersMail = ((OrdView)item).oCustomersMail,
                                 StartPoint = ((OrdView)item).oStartPoint,
                                 FinalPoint = ((OrdView)item).oFinalPoint,
                                 TrackNumber = ((OrdView)item).oFinalPoint,
                                 OrderStatus = ((OrdView)item).oOrderStatus,
                                 Comment = ((OrdView)item).oComment,
-                                MoneyPerOrder = ((OrdView)item).oMoneyPerOrder,
-                                Completed = ((OrdView)item)?.oCompleted ?? 0
+                                MoneyPerOrder = ((OrdView)item).oMoneyPerOrder
                         };
 
                             db.Orders.Add(order); // Adding a new entry to the database

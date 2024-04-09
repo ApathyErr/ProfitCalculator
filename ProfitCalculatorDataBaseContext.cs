@@ -15,9 +15,7 @@ public partial class ProfitCalculatorDataBaseContext : DbContext
     {
     }
 
-    public virtual DbSet<City> Cities { get; set; }
-
-    public virtual DbSet<Employer> Employers { get; set; }
+    public virtual DbSet<Customer> Customers { get; set; }
 
     public virtual DbSet<Order> Orders { get; set; }
 
@@ -27,22 +25,18 @@ public partial class ProfitCalculatorDataBaseContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<City>(entity =>
+        modelBuilder.Entity<Customer>(entity =>
         {
-            entity.Property(e => e.CityId).HasColumnName("City_id");
-            entity.Property(e => e.CityName).HasColumnName("City_name");
-        });
-
-        modelBuilder.Entity<Employer>(entity =>
-        {
-            entity.Property(e => e.EmployerId).HasColumnName("Employer_id");
-            entity.Property(e => e.EmployerMail).HasColumnName("Employer_mail");
+            entity.Property(e => e.CustomerId).HasColumnName("Customer_id");
+            entity.Property(e => e.CompanyName).HasColumnName("Company_name");
         });
 
         modelBuilder.Entity<Order>(entity =>
         {
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.CustomerId).HasColumnName("Customer_id");
             entity.Property(e => e.Data).HasColumnName("data");
+            entity.Property(e => e.СontentsOfTransportation).HasColumnName("Сontents_of_transportation");
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -33,7 +33,8 @@ namespace ProfitCalculator.ViewModel
                           {
                               oId = order.Id,
                               oData = order.Data,
-                              oCustomersMail = order.CustomersMail,
+                              oCustomerId = order.CustomerId,
+                              //oCustomersMail = order.CustomersMail,
                               oOrderStatus = order.OrderStatus,
                               oMoneyPerOrder = order.MoneyPerOrder,
                               oExpenses = order.Expenses,
@@ -57,7 +58,8 @@ namespace ProfitCalculator.ViewModel
                         if (entry != null)
                         {
                             entry.Data = ((OrdView)item).oData;
-                            entry.CustomersMail = ((OrdView)item).oCustomersMail;
+                            entry.CustomerId = ((OrdView)item).oCustomerId;
+                            //oCustomersMail = ((Order)item).oCustomersMail;
                             entry.OrderStatus = ((OrdView)item).oOrderStatus;
                             entry.MoneyPerOrder = ((OrdView)item).oMoneyPerOrder;
                             entry.Expenses = ((OrdView)item).oExpenses;
@@ -67,10 +69,11 @@ namespace ProfitCalculator.ViewModel
                             Order order = new Order
                             {
                                 Data = ((OrdView)item).oData,
-                            CustomersMail = ((OrdView)item).oCustomersMail,
-                            OrderStatus = ((OrdView)item).oOrderStatus,
-                            MoneyPerOrder = ((OrdView)item).oMoneyPerOrder,
-                            Expenses = ((OrdView)item).oExpenses
+                                CustomerId = ((OrdView)item).oCustomerId,
+                                //oCustomersMail = ((Order)item).oCustomersMail,
+                                OrderStatus = ((OrdView)item).oOrderStatus,
+                                MoneyPerOrder = ((OrdView)item).oMoneyPerOrder,
+                                Expenses = ((OrdView)item).oExpenses
                         
                         };
 
