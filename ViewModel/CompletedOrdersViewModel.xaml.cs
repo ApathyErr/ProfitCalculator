@@ -29,7 +29,7 @@ namespace ProfitCalculator.ViewModel
             using (ProfitCalculatorDataBaseContext db = new ProfitCalculatorDataBaseContext())
             {
                 var customers = db.Customers.ToList(); // Загрузите всех клиентов заранее
-                var orders = db.Orders.Where(o => o.OrderStatus != "Готов")
+                var orders = db.Orders.Where(o => o.OrderStatus == "Готов")
                                      .Select(o => new OrdView
                                      {
                                          oId = o.Id,
