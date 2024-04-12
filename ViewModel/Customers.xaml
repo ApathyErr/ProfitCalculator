@@ -44,12 +44,13 @@
                         Header="Id заказчика" 
                         IsReadOnly="True"
                         Width="50"/>
-                    <DataGridTextColumn Binding="{Binding Mail}" ClipboardContentBinding="{x:Null}" Header="Почта"/>
-                    <DataGridTextColumn Binding="{Binding Cities}" ClipboardContentBinding="{x:Null}" Header="Город"/>
-                    <DataGridTextColumn Binding="{Binding CompanyName}" ClipboardContentBinding="{x:Null}" Header="Название компании"/>
                     <DataGridTextColumn Binding="{Binding Familiya}" ClipboardContentBinding="{x:Null}" Header="Фамилия"/>
                     <DataGridTextColumn Binding="{Binding Imya}" ClipboardContentBinding="{x:Null}" Header="Имя" IsReadOnly="True"/>
                     <DataGridTextColumn Binding="{Binding Otchestvo}" ClipboardContentBinding="{x:Null}" Header="Отчество" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding Telephone}" ClipboardContentBinding="{x:Null}" Header="Телефон"/>
+                    <DataGridTextColumn Binding="{Binding Mail}" ClipboardContentBinding="{x:Null}" Header="Почта"/>
+                    <DataGridTextColumn Binding="{Binding Cities}" ClipboardContentBinding="{x:Null}" Header="Город"/>
+                    <DataGridTextColumn Binding="{Binding CompanyName}" ClipboardContentBinding="{x:Null}" Header="Название компании"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Border>

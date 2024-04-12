@@ -5,8 +5,95 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ProfitCalculator.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Loaded="metodShow">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0"
+            Background="#800da9d9"
+            CornerRadius="10" 
+            Padding="10">
+            <DataGrid Name="reportGrid"
+                  RowBackground="#332be0b7"
+                  AlternatingRowBackground="#330da9d9"
+                  Foreground="White"
+                  ColumnWidth="*"
+                  Background="Transparent"
+                  BorderThickness="0"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="False"
+                  SelectionMode="Extended"
+                  SelectionUnit="FullRow"
+                  CanUserDeleteRows="False">
+                <!--SelectionChanged="customersGrid_SelectionChanged"-->
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Foreground" Value="#BCBEE0"/>
+                        <Setter Property="Padding" Value="10,0,0,10"/>
+                        <Setter Property="FontFamily" Value="Montserrat"/>
+                        <Setter Property="FontSize" Value="15"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.Columns>
+
+                    <DataGridTemplateColumn Header="Начальная дата">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding startDate, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="Конечная дата">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding endDate, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+        <StackPanel Grid.Row="1"
+     Orientation="Horizontal"
+     HorizontalAlignment="Center">
+            <Button x:Name="btnAdd"
+     BorderThickness="0"
+     Content="Узнать среднию сумму заказа"
+     Foreground="White"
+     FontSize="12"
+     FontFamily="Montserrat"
+     Cursor="Hand"
+     Margin="10,0,10,0" Click="btnAverageMoneyPerOrder_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#802be0b7"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#800da9d9"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="200" 
+                 Height="40"
+                 CornerRadius="20"
+                 Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"
+                               HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
     </Grid>
 </UserControl>

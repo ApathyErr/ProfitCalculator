@@ -9,6 +9,10 @@ public partial class Order
 
     public string? Data { get; set; }
 
+    public string? startDate { get; set; }
+
+    public string? endDate { get; set; }
+
     public int? CustomerId { get; set; }
 
     public string? СontentsOfTransportation { get; set; }
@@ -27,7 +31,7 @@ public partial class Order
 
     public double? Expenses { get; set; }
 }
-internal class OrdView
+public class OrdView
 {
     public int? oId { get; set; }
 
@@ -55,5 +59,4 @@ internal class OrdView
 
     public double? oProfit { get; set; }
 
-    public int? oCompleted { get; set; }
 }

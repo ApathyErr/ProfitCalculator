@@ -52,21 +52,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-
-                    <!--<DataGridComboBoxColumn Header="CustomersMail" 
-                        SelectedValueBinding="{Binding oCustomersMail}">
-                        <DataGridComboBoxColumn.ElementStyle>
-                            <Style TargetType="ComboBox">
-                                <Setter Property="ItemsSource" Value="{Binding Path=ProfitCalculatorDataBaseContext.Customers, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"/>
-                            </Style>
-                        </DataGridComboBoxColumn.ElementStyle>
-                        <DataGridComboBoxColumn.EditingElementStyle>
-                            <Style TargetType="ComboBox">
-                                <Setter Property="ItemsSource" Value="{Binding Path=ProfitCalculatorDataBaseContext.Customers, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"/>
-                            </Style>
-                        </DataGridComboBoxColumn.EditingElementStyle>
-                    </DataGridComboBoxColumn>-->
-
+                    <DataGridComboBoxColumn x:Name="mailChkBox" SelectedItemBinding="{Binding oCustomersMail}" Header="CustomersMail"/>
                     <DataGridTextColumn Binding="{Binding oCustomerId}" ClipboardContentBinding="{x:Null}" Header="Id заказчика"/>
                     <DataGridTextColumn Binding="{Binding oStartPoint}" ClipboardContentBinding="{x:Null}" Header="Откуда"/>
                     <DataGridTextColumn Binding="{Binding oFinalPoint}" ClipboardContentBinding="{x:Null}" Header="Куда"/>

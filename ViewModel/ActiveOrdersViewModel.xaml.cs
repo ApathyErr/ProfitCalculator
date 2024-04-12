@@ -34,24 +34,24 @@ namespace ProfitCalculator.ViewModel
 
             using (ProfitCalculatorDataBaseContext db = new ProfitCalculatorDataBaseContext())
             {
-                var customers = db.Customers.ToList(); // Загрузите всех клиентов заранее
+                mailChkBox.ItemsSource = db.Customers.Select(cust => cust.Mail).ToList();// Загрузите всех клиентов заранее    
                 var orders = db.Orders.Where(o => o.OrderStatus != "Готов")
-                                     .Select(o => new OrdView
-                                     {
-                                         oId = o.Id,
-                                         oData = o.Data,
-                                         oCustomerId = o.CustomerId,
-                                         //oCustomersMail = customers.FirstOrDefault(c => c.CustomerId == (int)o.CustomerId)?.Mail,
-                                         //oCustomersMail = customers.FirstOrDefault(c => c.CustomerId == null ? null : (int)o.CustomerId).Mail,
-                                         oStartPoint = o.StartPoint,
-                                         oFinalPoint = o.FinalPoint,
-                                         oTrackNumber = o.TrackNumber,
-                                         oOrderStatus = o.OrderStatus,
-                                         oComment = o.Comment,
-                                         oMoneyPerOrder = o.MoneyPerOrder
-                                     })
-                                     .ToList();
-
+                    .Join(db.Customers,
+                    o => o.CustomerId,
+                    c => c.CustomerId,
+                    (o, c) => new OrdView
+                    {
+                        oId = o.Id,
+                        oData = o.Data,
+                        oCustomerId = o.CustomerId,
+                        oCustomersMail = c.Mail,
+                        oStartPoint = o.StartPoint,
+                        oFinalPoint = o.FinalPoint,
+                        oTrackNumber = o.TrackNumber,
+                        oOrderStatus = o.OrderStatus,
+                        oComment = o.Comment,
+                        oMoneyPerOrder = o.MoneyPerOrder
+                    }).ToList();
                 activeOrdersGrid.ItemsSource = orders;
             }
 
@@ -88,84 +88,84 @@ namespace ProfitCalculator.ViewModel
         }
 
         private async void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            var items = activeOrdersGrid.ItemsSource;
+            if (items != null)
             {
-                var items = activeOrdersGrid.ItemsSource;
-                if (items != null)
+                using (ProfitCalculatorDataBaseContext db = new ProfitCalculatorDataBaseContext())
                 {
-                    using (ProfitCalculatorDataBaseContext db = new ProfitCalculatorDataBaseContext())
+                    // Go through all the records and add or update them in the database
+                    foreach (var item in items)
                     {
-                        // Go through all the records and add or update them in the database
-                        foreach (var item in items)
+                        var entry = await db.Orders.FindAsync(((OrdView)item).oId);
+                        if (entry != null)
                         {
-                            var entry = await db.Orders.FindAsync(((OrdView)item).oId);
-                            if (entry != null)
-                            {
-                                entry.Data = ((OrdView)item).oData;
-                                entry.CustomerId = ((OrdView)item).oCustomerId;
-                                //entry.Mail = ((OrdView)item).oCustomersMail;
-                                entry.StartPoint = ((OrdView)item).oStartPoint;
-                                entry.FinalPoint = ((OrdView)item).oFinalPoint;
-                                entry.TrackNumber = ((OrdView)item).oFinalPoint;
-                                entry.OrderStatus = ((OrdView)item).oOrderStatus;
-                                entry.Comment = ((OrdView)item).oComment;
-                                entry.MoneyPerOrder = ((OrdView)item).oMoneyPerOrder;
-                            }
-                            else
-                            {
-                                Order order = new Order
-                                {
-                                    Data = ((OrdView)item).oData,
-                                    CustomerId = ((OrdView)item).oCustomerId,
-                                    //oCustomersMail = ((Order)item).oCustomersMail,
-                                    StartPoint = ((OrdView)item).oStartPoint,
-                                    FinalPoint = ((OrdView)item).oFinalPoint,
-                                    TrackNumber = ((OrdView)item).oFinalPoint,
-                                    OrderStatus = ((OrdView)item).oOrderStatus,
-                                    Comment = ((OrdView)item).oComment,
-                                    MoneyPerOrder = ((OrdView)item).oMoneyPerOrder
-                                };
-
-                                db.Orders.Add(order); // Adding a new entry to the database
-                            }
-
-                            await db.SaveChangesAsync(); // Saving changes
+                            entry.Data = ((OrdView)item).oData;
+                            entry.CustomerId = ((OrdView)item).oCustomerId;
+                            //entry.Mail = ((OrdView)item).oCustomersMail;
+                            entry.StartPoint = ((OrdView)item).oStartPoint;
+                            entry.FinalPoint = ((OrdView)item).oFinalPoint;
+                            entry.TrackNumber = ((OrdView)item).oFinalPoint;
+                            entry.OrderStatus = ((OrdView)item).oOrderStatus;
+                            entry.Comment = ((OrdView)item).oComment;
+                            entry.MoneyPerOrder = ((OrdView)item).oMoneyPerOrder;
                         }
+                        else
+                        {
+                            Order order = new Order
+                            {
+                                Data = ((OrdView)item).oData,
+                                CustomerId = ((OrdView)item).oCustomerId,
+                                //oCustomersMail = ((Order)item).oCustomersMail,
+                                StartPoint = ((OrdView)item).oStartPoint,
+                                FinalPoint = ((OrdView)item).oFinalPoint,
+                                TrackNumber = ((OrdView)item).oFinalPoint,
+                                OrderStatus = ((OrdView)item).oOrderStatus,
+                                Comment = ((OrdView)item).oComment,
+                                MoneyPerOrder = ((OrdView)item).oMoneyPerOrder
+                            };
+
+                            db.Orders.Add(order); // Adding a new entry to the database
+                        }
+
+                        await db.SaveChangesAsync(); // Saving changes
                     }
                 }
-                metodShow(sender, e);
             }
-
-
-
-
-            private void btnDelete_Click(object sender, RoutedEventArgs e)
-            {
-                if (activeOrdersGrid.SelectedItems.Count == 0)
-                {
-                    MessageBox.Show("Нет выбранных записей для удаления.", "Уведомление");
-                    return;
-                }
-
-                var selectedIds = activeOrdersGrid.SelectedItems.Cast<OrdView>()
-                                               .Select(x => x.oId).ToArray();
-
-                if (MessageBox.Show($"Вы действительно хотите удалить записи с ID: {string.Join(", ", selectedIds)}?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                {
-                    using (ProfitCalculatorDataBaseContext db = new ProfitCalculatorDataBaseContext())
-                    {
-                        foreach (var id in selectedIds)
-                        {
-                            var orderToDelete = db.Orders.FirstOrDefault(o => o.Id == id);
-                            if (orderToDelete != null)
-                            {
-                                db.Orders.Remove(orderToDelete);
-                            }
-                        }
-                        db.SaveChanges();
-                    }
-                }
-                metodShow(sender, e);
-            }
+            metodShow(sender, e);
         }
 
-    } 
+
+
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (activeOrdersGrid.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Нет выбранных записей для удаления.", "Уведомление");
+                return;
+            }
+
+            var selectedIds = activeOrdersGrid.SelectedItems.Cast<OrdView>()
+                                           .Select(x => x.oId).ToArray();
+
+            if (MessageBox.Show($"Вы действительно хотите удалить записи с ID: {string.Join(", ", selectedIds)}?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                using (ProfitCalculatorDataBaseContext db = new ProfitCalculatorDataBaseContext())
+                {
+                    foreach (var id in selectedIds)
+                    {
+                        var orderToDelete = db.Orders.FirstOrDefault(o => o.Id == id);
+                        if (orderToDelete != null)
+                        {
+                            db.Orders.Remove(orderToDelete);
+                        }
+                    }
+                    db.SaveChanges();
+                }
+            }
+            metodShow(sender, e);
+        }
+    }
+
+}

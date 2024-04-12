@@ -33,6 +33,7 @@ namespace ProfitCalculator.ViewModel
                           {
                               CustomerId = customer.CustomerId,
                               Mail = customer.Mail,
+                              Telephone = customer.Telephone,
                               Cities = customer.Cities,
                               CompanyName = customer.CompanyName,
                               Familiya = customer.Familiya,
@@ -57,6 +58,7 @@ namespace ProfitCalculator.ViewModel
                         if (entry != null)
                         {
                             entry.Mail = ((Customer)item).Mail;
+                            entry.Telephone = ((Customer)item).Telephone;
                             entry.Cities = ((Customer)item).Cities;
                             entry.CompanyName = ((Customer)item).CompanyName;
                             entry.Familiya = ((Customer)item).Familiya;

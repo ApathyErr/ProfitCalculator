@@ -28,19 +28,21 @@ namespace ProfitCalculator.ViewModel
         {
             using (ProfitCalculatorDataBaseContext db = new ProfitCalculatorDataBaseContext())
             {
-                var ord = from order in db.Orders
-                          select new OrdView
-                          {
-                              oId = order.Id,
-                              oData = order.Data,
-                              oCustomerId = order.CustomerId,
-                              //oCustomersMail = order.CustomersMail,
-                              oOrderStatus = order.OrderStatus,
-                              oMoneyPerOrder = order.MoneyPerOrder,
-                              oExpenses = order.Expenses,
-                              oProfit = order.MoneyPerOrder - order.Expenses
-                          };
-                financeGrid.ItemsSource = ord.ToList();
+                var customers = db.Customers.ToList(); // Загрузите всех клиентов заранее
+                var orders = db.Orders.Where(o => o.OrderStatus == "Готов")
+                                     .Select(o => new OrdView
+                                     {
+                                         oId = o.Id,
+                              oData = o.Data,
+                              oCustomerId = o.CustomerId,
+                                         //oCustomersMail = o.CustomersMail,
+                                         oOrderStatus = o.OrderStatus,
+                              oMoneyPerOrder = o.MoneyPerOrder,
+                              oExpenses = o.Expenses,
+                              oProfit = o.MoneyPerOrder - o.Expenses
+                                     })
+                                     .ToList();
+                financeGrid.ItemsSource = orders;
             }
         }
 
