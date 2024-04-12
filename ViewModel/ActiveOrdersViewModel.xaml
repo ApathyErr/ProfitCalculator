@@ -52,8 +52,8 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridComboBoxColumn x:Name="mailChkBox" SelectedItemBinding="{Binding oCustomersMail}" Header="CustomersMail"/>
-                    <DataGridTextColumn Binding="{Binding oCustomerId}" ClipboardContentBinding="{x:Null}" Header="Id заказчика"/>
+                    <DataGridComboBoxColumn x:Name="mailChkBox" SelectedItemBinding="{Binding oCustomersMail}" Header="Почта заказчика"/>
+                    <!--<DataGridTextColumn Binding="{Binding oCustomerId}" ClipboardContentBinding="{x:Null}" Header="Id заказчика"/>-->
                     <DataGridTextColumn Binding="{Binding oStartPoint}" ClipboardContentBinding="{x:Null}" Header="Откуда"/>
                     <DataGridTextColumn Binding="{Binding oFinalPoint}" ClipboardContentBinding="{x:Null}" Header="Куда"/>
                     <DataGridTextColumn Binding="{Binding oTrackNumber}" ClipboardContentBinding="{x:Null}" Header="Трек номер"/>

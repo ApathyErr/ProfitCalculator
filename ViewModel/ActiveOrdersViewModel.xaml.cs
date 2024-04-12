@@ -102,13 +102,18 @@ namespace ProfitCalculator.ViewModel
                         {
                             entry.Data = ((OrdView)item).oData;
                             entry.CustomerId = ((OrdView)item).oCustomerId;
-                            //entry.Mail = ((OrdView)item).oCustomersMail;
+                            //entry.CustomerId = ((OrdView)item).oCustomersMail;
                             entry.StartPoint = ((OrdView)item).oStartPoint;
                             entry.FinalPoint = ((OrdView)item).oFinalPoint;
-                            entry.TrackNumber = ((OrdView)item).oFinalPoint;
+                            entry.TrackNumber = ((OrdView)item).oTrackNumber;
                             entry.OrderStatus = ((OrdView)item).oOrderStatus;
                             entry.Comment = ((OrdView)item).oComment;
                             entry.MoneyPerOrder = ((OrdView)item).oMoneyPerOrder;
+                            var customer = await db.Customers.FirstOrDefaultAsync(c => c.Mail == ((OrdView)item).oCustomersMail);
+                            if (customer != null)
+                            {
+                                entry.CustomerId = customer.CustomerId; // Устанавливаем идентификатор клиента в заказе
+                            }
                         }
                         else
                         {
@@ -116,7 +121,6 @@ namespace ProfitCalculator.ViewModel
                             {
                                 Data = ((OrdView)item).oData,
                                 CustomerId = ((OrdView)item).oCustomerId,
-                                //oCustomersMail = ((Order)item).oCustomersMail,
                                 StartPoint = ((OrdView)item).oStartPoint,
                                 FinalPoint = ((OrdView)item).oFinalPoint,
                                 TrackNumber = ((OrdView)item).oFinalPoint,
@@ -124,11 +128,16 @@ namespace ProfitCalculator.ViewModel
                                 Comment = ((OrdView)item).oComment,
                                 MoneyPerOrder = ((OrdView)item).oMoneyPerOrder
                             };
+                            var customer = await db.Customers.FirstOrDefaultAsync(c => c.Mail == ((OrdView)item).oCustomersMail);
+                            if (customer != null)
+                            {
+                                order.CustomerId = customer.CustomerId; // Устанавливаем идентификатор клиента в заказе
+                            }
 
-                            db.Orders.Add(order); // Adding a new entry to the database
+                            db.Orders.Add(order); // Добавляем новую запись в базу данных
                         }
 
-                        await db.SaveChangesAsync(); // Saving changes
+                        await db.SaveChangesAsync(); // Сохраняем изменения
                     }
                 }
             }

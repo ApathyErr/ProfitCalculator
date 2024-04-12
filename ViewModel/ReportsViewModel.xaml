@@ -12,6 +12,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
+        
         <Border Grid.Row="0"
             Background="#800da9d9"
             CornerRadius="10" 
@@ -28,6 +29,7 @@
                   SelectionMode="Extended"
                   SelectionUnit="FullRow"
                   CanUserDeleteRows="False">
+                
                 <!--SelectionChanged="customersGrid_SelectionChanged"-->
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">

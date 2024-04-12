@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,20 +29,23 @@ namespace ProfitCalculator.ViewModel
         {
             using (ProfitCalculatorDataBaseContext db = new ProfitCalculatorDataBaseContext())
             {
-                var customers = db.Customers.ToList(); // Загрузите всех клиентов заранее
+                mailChkBox.ItemsSource = db.Customers.Select(cust => cust.Mail).ToList(); 
                 var orders = db.Orders.Where(o => o.OrderStatus == "Готов")
-                                     .Select(o => new OrdView
-                                     {
-                                         oId = o.Id,
-                              oData = o.Data,
-                              oCustomerId = o.CustomerId,
-                                         //oCustomersMail = o.CustomersMail,
-                                         oOrderStatus = o.OrderStatus,
-                              oMoneyPerOrder = o.MoneyPerOrder,
+                    .Join(db.Customers,
+                    o => o.CustomerId,
+                    c => c.CustomerId,
+                    (o, c) => new OrdView
+                    {
+                        oId = o.Id,
+                        oData = o.Data,
+                        oCustomerId = o.CustomerId,
+                        oCustomersMail = c.Mail,
+                        oOrderStatus = o.OrderStatus,
+                        oMoneyPerOrder = o.MoneyPerOrder,
                               oExpenses = o.Expenses,
                               oProfit = o.MoneyPerOrder - o.Expenses
-                                     })
-                                     .ToList();
+                    }).ToList();
+
                 financeGrid.ItemsSource = orders;
             }
         }
@@ -65,6 +69,11 @@ namespace ProfitCalculator.ViewModel
                             entry.OrderStatus = ((OrdView)item).oOrderStatus;
                             entry.MoneyPerOrder = ((OrdView)item).oMoneyPerOrder;
                             entry.Expenses = ((OrdView)item).oExpenses;
+                            var customer = await db.Customers.FirstOrDefaultAsync(c => c.Mail == ((OrdView)item).oCustomersMail);
+                            if (customer != null)
+                            {
+                                entry.CustomerId = customer.CustomerId; // Устанавливаем идентификатор клиента в заказе
+                            }
                         }
                         else
                         {
@@ -77,7 +86,12 @@ namespace ProfitCalculator.ViewModel
                                 MoneyPerOrder = ((OrdView)item).oMoneyPerOrder,
                                 Expenses = ((OrdView)item).oExpenses
                         
-                        };
+                            };
+                            var customer = await db.Customers.FirstOrDefaultAsync(c => c.Mail == ((OrdView)item).oCustomersMail);
+                            if (customer != null)
+                            {
+                                order.CustomerId = customer.CustomerId; // Устанавливаем идентификатор клиента в заказе
+                            }
 
                             db.Orders.Add(order); // Adding a new entry to the database
                         }

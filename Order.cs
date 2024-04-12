@@ -7,11 +7,7 @@ public partial class Order
 {
     public int Id { get; set; }
 
-    public string? Data { get; set; }
-
-    public string? startDate { get; set; }
-
-    public string? endDate { get; set; }
+    public DateTime? Data { get; set; }
 
     public int? CustomerId { get; set; }
 
@@ -27,9 +23,15 @@ public partial class Order
 
     public string? Comment { get; set; }
 
-    public double? MoneyPerOrder { get; set; }
+    public decimal MoneyPerOrder { get; set; }
 
-    public double? Expenses { get; set; }
+    public decimal Expenses { get; set; }
+
+    //public decimal totalMoneyPerOrder { get; set; }
+
+    public DateTime? startDate { get; set; }
+
+    public DateTime? endDate { get; set; }
 }
 public class OrdView
 {
@@ -37,7 +39,7 @@ public class OrdView
 
     public int? oNum { get; set; }
 
-    public string? oData { get; set; }
+    public DateTime? oData { get; set; }
 
     public int? oCustomerId { get; set; }
 
@@ -53,10 +55,11 @@ public class OrdView
 
     public string? oComment { get; set; }
 
-    public double? oMoneyPerOrder { get; set; }
+    public decimal oMoneyPerOrder { get; set; }
 
-    public double? oExpenses { get; set; }
+    public decimal oExpenses { get; set; }
 
-    public double? oProfit { get; set; }
+    public decimal oProfit { get; set; }
+
 
 }

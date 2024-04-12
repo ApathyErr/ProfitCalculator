@@ -36,8 +36,6 @@ namespace ProfitCalculator.ViewModel
                                      {
                                          startDate = o.Data,
                                          endDate = o.Data
-
-
                                      })
                                      .ToList();
 
@@ -47,13 +45,28 @@ namespace ProfitCalculator.ViewModel
 
         private void btnAverageMoneyPerOrder_Click(object sender, RoutedEventArgs e)
         {
-            
-                    // Создаем окно уведомления
-                    MessageBox.Show($"Среднее значение MoneyPerOrder между");
-                
-            
+            using (var context = new ProfitCalculatorDataBaseContext())
+            {
 
+                // Поиск записей в таблице Order
+                var orders = context.Orders
+                    .Where(o => o.Data >= o.startDate && o.Data <= o.endDate)
+                    .ToList();
+
+                if (orders.Count > 0)
+                {
+                    decimal totalMoneyPerOrder = orders.Sum(o => o.MoneyPerOrder);
+                    decimal averageMoneyPerOrder = totalMoneyPerOrder / orders.Count;
+                    MessageBox.Show($"Среднее значение MoneyPerOrder: {averageMoneyPerOrder}");
+                }
+                else
+                {
+                    MessageBox.Show("Нет записей для расчета среднего значения.");
+                }
+            }
 
         }
+
+        
     }
 }
