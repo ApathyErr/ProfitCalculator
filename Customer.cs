@@ -20,4 +20,6 @@ public partial class Customer
     public string? Cities { get; set; }
 
     public string? CompanyName { get; set; }
+
+    public int? Inn { get; set; }
 }

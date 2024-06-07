@@ -20,8 +20,10 @@ public partial class ProfitCalculatorDataBaseContext : DbContext
     public virtual DbSet<Order> Orders { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#pragma warning disable CS1030 // Директива #warning
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlite("Data Source= DataBase\\ProfitCalculatorDataBase.db");
+        => optionsBuilder.UseSqlite("Data Source= DataBase\\\\\\\\ProfitCalculatorDataBase.db");
+#pragma warning restore CS1030 // Директива #warning
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -29,6 +31,7 @@ public partial class ProfitCalculatorDataBaseContext : DbContext
         {
             entity.Property(e => e.CustomerId).HasColumnName("Customer_id");
             entity.Property(e => e.CompanyName).HasColumnName("Company_name");
+            entity.Property(e => e.Inn).HasColumnName("inn");
         });
 
         modelBuilder.Entity<Order>(entity =>
@@ -36,6 +39,12 @@ public partial class ProfitCalculatorDataBaseContext : DbContext
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.CustomerId).HasColumnName("Customer_id");
             entity.Property(e => e.Data).HasColumnName("data");
+            //entity.Property(e => e.EndDate)
+            //    .HasColumnType("DATETIME")
+            //    .HasColumnName("endDate");
+            //entity.Property(e => e.StartDate)
+            //    .HasColumnType("DATETIME")
+            //    .HasColumnName("startDate");
             entity.Property(e => e.СontentsOfTransportation).HasColumnName("Сontents_of_transportation");
         });
 

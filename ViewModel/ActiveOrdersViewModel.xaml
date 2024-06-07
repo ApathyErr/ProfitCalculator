@@ -52,7 +52,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridComboBoxColumn x:Name="mailChkBox" SelectedItemBinding="{Binding oCustomersMail}" Header="Почта заказчика"/>
+                    <DataGridComboBoxColumn x:Name="nameChkBox" SelectedItemBinding="{Binding oCustomersName}" Header="Наименование заказчика"/>
                     <!--<DataGridTextColumn Binding="{Binding oCustomerId}" ClipboardContentBinding="{x:Null}" Header="Id заказчика"/>-->
                     <DataGridTextColumn Binding="{Binding oStartPoint}" ClipboardContentBinding="{x:Null}" Header="Откуда"/>
                     <DataGridTextColumn Binding="{Binding oFinalPoint}" ClipboardContentBinding="{x:Null}" Header="Куда"/>
@@ -60,6 +60,7 @@
                     <DataGridTextColumn Binding="{Binding oOrderStatus}" ClipboardContentBinding="{x:Null}" Header="Статус заказа"/>
                     <DataGridTextColumn Binding="{Binding oComment}" ClipboardContentBinding="{x:Null}" Header="Коментарий"/>
                     <DataGridTextColumn Binding="{Binding oMoneyPerOrder}" ClipboardContentBinding="{x:Null}" Header="Сумма"/>
+
                 </DataGrid.Columns>
             </DataGrid>
         </Border>

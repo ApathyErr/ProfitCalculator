@@ -28,42 +28,44 @@ namespace ProfitCalculator.ViewModel
         private void metodShow(object sender, RoutedEventArgs e)
         {
 
-            using (ProfitCalculatorDataBaseContext db = new ProfitCalculatorDataBaseContext())
-            {
-                var customers = db.Customers.ToList(); // Загрузите всех клиентов заранее
-                var orders = db.Orders.Where(o => o.Id == null)
-                                     .Select(o => new Order
-                                     {
-                                         startDate = o.Data,
-                                         endDate = o.Data
-                                     })
-                                     .ToList();
+            //using (ProfitCalculatorDataBaseContext db = new ProfitCalculatorDataBaseContext())
+            //{
+            //    var customers = db.Customers.ToList(); // Загрузите всех клиентов заранее
+            //    var orders = db.Orders.Where(o => o.Id == null)
+            //                         .Select(o => new Order
+            //                         {
+            //                             startDate = o.Data,
+            //                             endDate = o.Data
+            //                         })
+            //                         .ToList();
 
-                reportGrid.ItemsSource = orders;
-            }
+            //    reportGrid.ItemsSource = orders;
+            //}
         }
 
         private void btnAverageMoneyPerOrder_Click(object sender, RoutedEventArgs e)
         {
-            using (var context = new ProfitCalculatorDataBaseContext())
-            {
+            //using (var context = new ProfitCalculatorDataBaseContext())
+            //{
 
-                // Поиск записей в таблице Order
-                var orders = context.Orders
-                    .Where(o => o.Data >= o.startDate && o.Data <= o.endDate)
-                    .ToList();
+            //    // Поиск записей в таблице Order
+            //    var orders = context.Orders
+            //        .Where(o => o.Data >= o.startDate && o.Data <= o.endDate)
+            //        .ToList();
 
-                if (orders.Count > 0)
-                {
-                    decimal totalMoneyPerOrder = orders.Sum(o => o.MoneyPerOrder);
-                    decimal averageMoneyPerOrder = totalMoneyPerOrder / orders.Count;
-                    MessageBox.Show($"Среднее значение MoneyPerOrder: {averageMoneyPerOrder}");
-                }
-                else
-                {
-                    MessageBox.Show("Нет записей для расчета среднего значения.");
-                }
-            }
+            //    if (orders.Count > 0)
+            //    {
+            //        decimal totalMoneyPerOrder = orders.Sum(o => o.MoneyPerOrder);
+            //        decimal averageMoneyPerOrder = totalMoneyPerOrder / orders.Count;
+            //        MessageBox.Show($"Среднее значение MoneyPerOrder: {averageMoneyPerOrder}");
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show($"Нет записей для расчета среднего значения");
+
+
+            //    }
+            //}
 
         }
 

@@ -47,6 +47,8 @@
                         <GradientStop Color="#800da9d9" Offset="1" />
                     </LinearGradientBrush>
                 </Border.Background>
+                
+                
                 <Grid>
                     <Grid.RowDefinitions>
                         <!--Control bar-->
@@ -81,7 +83,7 @@
                         <RadioButton Style="{StaticResource menuButton}"
                                      Tag="{StaticResource color9}"
                                      Margin="0,10,0,10"
-                                     Click="Button2_Click"> 
+                                     Click="Button2_Click">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="User" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Выполненные заказы" Style="{StaticResource menuButtonText}"/>
@@ -91,25 +93,25 @@
                         <RadioButton Style="{StaticResource menuButton}"
                                      Tag="{StaticResource color9}"
                                      Margin="0,10,0,10"
-                                     Click="Button3_Click">  
+                                     Click="Button3_Click">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="User" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Заказчики" Style="{StaticResource menuButtonText}"/>
                             </StackPanel>
                         </RadioButton>
                         <!--4-->
-                        <RadioButton Style="{StaticResource menuButton}"
+                        <!--<RadioButton Style="{StaticResource menuButton}"
                                      Tag="{StaticResource color9}"
                                      Margin="0,10,0,10"
-                                     Click="Button4_Click">      
+                                     Click="Button4_Click">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="User" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Финансы" Style="{StaticResource menuButtonText}"/>
                             </StackPanel>
-                        </RadioButton>
-                       
+                        </RadioButton>-->
+
                         <!--5-->
-                        <RadioButton Style="{StaticResource menuButton}"
+                        <!--<RadioButton Style="{StaticResource menuButton}"
                                      Tag="{StaticResource color9}"
                                      Margin="0,10,0,10"
                                      Click="Button5_Click">
@@ -117,14 +119,9 @@
                                 <fa:IconImage Icon="User" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Отчеты" Style="{StaticResource menuButtonText}"/>
                             </StackPanel>
-                        </RadioButton>
-
-
-                        
+                            
+                        </RadioButton>-->
                     </StackPanel>
-                
-                    
-                    
                 </Grid>
             </Border>
 

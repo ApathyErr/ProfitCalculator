@@ -68,7 +68,7 @@
      HorizontalAlignment="Center">
             <Button x:Name="btnAdd"
      BorderThickness="0"
-     Content="Узнать среднию сумму заказа"
+     Content="Узнать среднюю сумму заказа"
      Foreground="White"
      FontSize="12"
      FontFamily="Montserrat"

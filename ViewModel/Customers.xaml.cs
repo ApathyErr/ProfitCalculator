@@ -38,7 +38,8 @@ namespace ProfitCalculator.ViewModel
                               CompanyName = customer.CompanyName,
                               Familiya = customer.Familiya,
                               Imya = customer.Imya,
-                              Otchestvo = customer.Otchestvo
+                              Otchestvo = customer.Otchestvo,
+                              Inn = customer.Inn
                           };
                 customerGrid.ItemsSource = cut.ToList();
             }
@@ -64,6 +65,7 @@ namespace ProfitCalculator.ViewModel
                             entry.Familiya = ((Customer)item).Familiya;
                             entry.Imya = ((Customer)item).Imya;
                             entry.Otchestvo = ((Customer)item).Otchestvo;
+                            entry.Inn = ((Customer)item).Inn;
                         }
                         else
                         {

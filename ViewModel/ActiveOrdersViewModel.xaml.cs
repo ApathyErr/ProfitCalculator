@@ -34,7 +34,7 @@ namespace ProfitCalculator.ViewModel
 
             using (ProfitCalculatorDataBaseContext db = new ProfitCalculatorDataBaseContext())
             {
-                mailChkBox.ItemsSource = db.Customers.Select(cust => cust.Mail).ToList();// Загрузите всех клиентов заранее    
+                nameChkBox.ItemsSource = db.Customers.Select(cust => cust.CompanyName).ToList(); 
                 var orders = db.Orders.Where(o => o.OrderStatus != "Готов")
                     .Join(db.Customers,
                     o => o.CustomerId,
@@ -44,7 +44,7 @@ namespace ProfitCalculator.ViewModel
                         oId = o.Id,
                         oData = o.Data,
                         oCustomerId = o.CustomerId,
-                        oCustomersMail = c.Mail,
+                        oCustomersName = c.CompanyName,
                         oStartPoint = o.StartPoint,
                         oFinalPoint = o.FinalPoint,
                         oTrackNumber = o.TrackNumber,
@@ -54,37 +54,6 @@ namespace ProfitCalculator.ViewModel
                     }).ToList();
                 activeOrdersGrid.ItemsSource = orders;
             }
-
-
-
-
-
-            //    using (ProfitCalculatorDataBaseContext db = new ProfitCalculatorDataBaseContext())
-            //    {
-
-            //        //var orders = db.Orders.ToList(); // загрузка всех заказов
-            //        //foreach (var order in orders)
-            //        //{
-            //        //    // Получение информации о клиенте по CustomerId и заполнение свойства oCustomersMail
-            //        //    order.oCustomersMail = db.Customers.FirstOrDefault(c => c.CustomerId == order.CustomerId)?.Mail;
-            //        //}
-            //    //    var ord = from order in db.Orders
-            //    //              //where order.Completed == 0
-            //    //              where order.OrderStatus != "Готов"
-            //    //              select new OrdView
-            //    //              {
-            //    //                  oId = order.Id,
-            //    //                  oData = order.Data,
-            //    //                  //oCustomersMail = order.CustomersMail,
-            //    //                  oStartPoint = order.StartPoint,
-            //    //                  oFinalPoint = order.FinalPoint,
-            //    //                  oTrackNumber = order.TrackNumber,
-            //    //                  oOrderStatus = order.OrderStatus,
-            //    //                  oComment = order.Comment,
-            //    //                  oMoneyPerOrder = order.MoneyPerOrder
-            //    //              };
-            //    //    activeOrdersGrid.ItemsSource = ord.ToList();
-            //    //}
         }
 
         private async void btnSave_Click(object sender, RoutedEventArgs e)
@@ -109,7 +78,8 @@ namespace ProfitCalculator.ViewModel
                             entry.OrderStatus = ((OrdView)item).oOrderStatus;
                             entry.Comment = ((OrdView)item).oComment;
                             entry.MoneyPerOrder = ((OrdView)item).oMoneyPerOrder;
-                            var customer = await db.Customers.FirstOrDefaultAsync(c => c.Mail == ((OrdView)item).oCustomersMail);
+                            
+                            var customer = await db.Customers.FirstOrDefaultAsync(c => c.CompanyName == ((OrdView)item).oCustomersName);
                             if (customer != null)
                             {
                                 entry.CustomerId = customer.CustomerId; // Устанавливаем идентификатор клиента в заказе
@@ -126,9 +96,10 @@ namespace ProfitCalculator.ViewModel
                                 TrackNumber = ((OrdView)item).oFinalPoint,
                                 OrderStatus = ((OrdView)item).oOrderStatus,
                                 Comment = ((OrdView)item).oComment,
-                                MoneyPerOrder = ((OrdView)item).oMoneyPerOrder
-                            };
-                            var customer = await db.Customers.FirstOrDefaultAsync(c => c.Mail == ((OrdView)item).oCustomersMail);
+                                MoneyPerOrder = ((OrdView)item).oMoneyPerOrder,
+                                Expenses = ((OrdView)item).oExpenses
+                        };
+                            var customer = await db.Customers.FirstOrDefaultAsync(c => c.CompanyName == ((OrdView)item).oCustomersName);
                             if (customer != null)
                             {
                                 order.CustomerId = customer.CustomerId; // Устанавливаем идентификатор клиента в заказе

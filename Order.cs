@@ -29,9 +29,9 @@ public partial class Order
 
     //public decimal totalMoneyPerOrder { get; set; }
 
-    public DateTime? startDate { get; set; }
+    //public DateTime? startDate { get; set; }
 
-    public DateTime? endDate { get; set; }
+    //public DateTime? endDate { get; set; }
 }
 public class OrdView
 {
@@ -44,6 +44,8 @@ public class OrdView
     public int? oCustomerId { get; set; }
 
     public string? oCustomersMail { get; set; }
+
+    public string? oCustomersName { get; set; }
 
     public string? oStartPoint { get; set; }
 
@@ -60,6 +62,4 @@ public class OrdView
     public decimal oExpenses { get; set; }
 
     public decimal oProfit { get; set; }
-
-
 }

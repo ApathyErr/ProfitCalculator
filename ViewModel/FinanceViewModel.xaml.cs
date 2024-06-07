@@ -39,7 +39,7 @@ namespace ProfitCalculator.ViewModel
                         oId = o.Id,
                         oData = o.Data,
                         oCustomerId = o.CustomerId,
-                        oCustomersMail = c.Mail,
+                        oCustomersName = c.Mail,
                         oOrderStatus = o.OrderStatus,
                         oMoneyPerOrder = o.MoneyPerOrder,
                               oExpenses = o.Expenses,
@@ -69,7 +69,7 @@ namespace ProfitCalculator.ViewModel
                             entry.OrderStatus = ((OrdView)item).oOrderStatus;
                             entry.MoneyPerOrder = ((OrdView)item).oMoneyPerOrder;
                             entry.Expenses = ((OrdView)item).oExpenses;
-                            var customer = await db.Customers.FirstOrDefaultAsync(c => c.Mail == ((OrdView)item).oCustomersMail);
+                            var customer = await db.Customers.FirstOrDefaultAsync(c => c.Mail == ((OrdView)item).oCustomersName);
                             if (customer != null)
                             {
                                 entry.CustomerId = customer.CustomerId; // Устанавливаем идентификатор клиента в заказе
@@ -87,7 +87,7 @@ namespace ProfitCalculator.ViewModel
                                 Expenses = ((OrdView)item).oExpenses
                         
                             };
-                            var customer = await db.Customers.FirstOrDefaultAsync(c => c.Mail == ((OrdView)item).oCustomersMail);
+                            var customer = await db.Customers.FirstOrDefaultAsync(c => c.Mail == ((OrdView)item).oCustomersName);
                             if (customer != null)
                             {
                                 order.CustomerId = customer.CustomerId; // Устанавливаем идентификатор клиента в заказе

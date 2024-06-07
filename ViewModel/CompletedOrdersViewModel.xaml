@@ -67,7 +67,7 @@ SelectionUnit="FullRow"
             </Style>
         </DataGridComboBoxColumn.EditingElementStyle>
     </DataGridComboBoxColumn>-->
-                    <DataGridComboBoxColumn x:Name="mailChkBox" SelectedItemBinding="{Binding oCustomersMail}" Header="Почта заказчика"/>
+                    <DataGridComboBoxColumn x:Name="nameChkBox" SelectedItemBinding="{Binding oCustomersName}" Header="Наименование заказчика"/>
                     <!--<DataGridTextColumn Binding="{Binding oCustomerId}" ClipboardContentBinding="{x:Null}" Header="Customer Id"/>-->
                     <DataGridTextColumn Binding="{Binding oStartPoint}" ClipboardContentBinding="{x:Null}" Header="Откуда"/>
                     <DataGridTextColumn Binding="{Binding oFinalPoint}" ClipboardContentBinding="{x:Null}" Header="Куда"/>
@@ -75,6 +75,10 @@ SelectionUnit="FullRow"
                     <DataGridTextColumn Binding="{Binding oOrderStatus}" ClipboardContentBinding="{x:Null}" Header="Статус заказа"/>
                     <DataGridTextColumn Binding="{Binding oComment}" ClipboardContentBinding="{x:Null}" Header="Коментарий"/>
                     <DataGridTextColumn Binding="{Binding oMoneyPerOrder}" ClipboardContentBinding="{x:Null}" Header="Сумма"/>
+                    
+                    <DataGridTextColumn Binding="{Binding oExpenses}" ClipboardContentBinding="{x:Null}" Header="Траты"/>
+
+                    <DataGridTextColumn Binding="{Binding oProfit}" ClipboardContentBinding="{x:Null}" Header="Прибыль" IsReadOnly="True"/>
                 </DataGrid.Columns>
 
             </DataGrid>
@@ -89,7 +93,7 @@ SelectionUnit="FullRow"
             FontSize="12"
             FontFamily="Montserrat"
             Cursor="Hand"
-            Margin="10,0,70,0" Click="btnSave_Click">
+            Margin="10,0,10,0" Click="btnSave_Click">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#802be0b7"/>
@@ -113,7 +117,36 @@ SelectionUnit="FullRow"
                 </Button.Template>
             </Button>
 
-
+            <Button x:Name="btnAddAct"
+                    BorderThickness="0"
+                    Content="Создать акт"
+                    Foreground="White"
+                    FontSize="12"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    Margin="0,0,0,0" Click="btnAddAct_Click">   
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#802be0b7"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#800da9d9"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="150" 
+            Height="40"
+            CornerRadius="20"
+            Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"
+                          HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
 
             <Button x:Name="btnDelete"
             BorderThickness="0"
@@ -122,7 +155,7 @@ SelectionUnit="FullRow"
             FontSize="12"
             FontFamily="Montserrat"
             Cursor="Hand"
-            Margin="70,0,10,0" Click="btnDelete_Click">
+            Margin="10,0,10,0" Click="btnDelete_Click">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#802be0b7"/>

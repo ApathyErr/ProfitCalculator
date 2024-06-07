@@ -68,10 +68,10 @@ namespace ProfitCalculator
             var tablesControl = new ViewModel.FinanceViewModel();
             contentControl.Content = tablesControl;
         }
-        private void Button5_Click(object sender, RoutedEventArgs e)
-        {
-            var tablesControl = new ViewModel.ReportsViewModel();
-            contentControl.Content = tablesControl;
-        }
+        //private void Button5_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var tablesControl = new ViewModel.ReportsViewModel();
+        //    contentControl.Content = tablesControl;
+        //}
     }
 }
